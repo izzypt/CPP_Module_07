@@ -30,17 +30,53 @@ C++ adds two new keywords to support templates: ````template```` and ```type nam
 
 A function template in c++ is a single function template that works with multiple data types simultaneously, but a standard function works only with one set of data types.
 
+A function template starts with the keyword ```template``` followed by template parameter(s) inside <> which is followed by the function definition.
+
 ```cpp
-  template<class type> return-type function-name(parameter list)
+  template <typename T>
+  T functionName(T parameter1, T parameter2, ...)
   {
-    //body of the function
+    // code
+  }
+```
+In the above code, T is a template argument that accepts different data types (int, float, etc.), and ```typename``` is a keyword.
+
+When an argument of a data type is passed to functionName(), the compiler generates a new version of functionName() for the given data type.
+
+### Calling a Function Template
+
+Once we've declared and defined a function template, we can call it in other functions or templates (such as the main() function) with the following syntax
+
+functionName<dataType>(parameter1, parameter2,...);
+
+For example, let us consider a template that adds two numbers:
+
+```cpp
+  template <typename T>
+  T add(T num1, T num2)
+  {
+    return (num1 + num2);
   }
 ```
 
-Here, ```type``` is a placeholder name for a data type used by the function. It is used within the function definition.
+We can then call it in the main() function to add int and double numbers.
 
-The class keyword is used to specify a generic type in a template declaration.
+```cpp
+int main() {
 
+    int result1;
+    double result2;
+    // calling with int parameters
+    result1 = add<int>(2, 3);
+    cout << result1 << endl;
+
+    // calling with double parameters
+    result2 = add<double>(2.2, 3.3);
+    cout << result2 << endl;
+
+    return 0;
+}    
+```
 ### Class template
 
 The class template in c++ is like function templates. They are known as generic templates. They define a family of classes in C++. 
@@ -52,6 +88,41 @@ Syntax of Class Template:
     {
         //class body;
     }
+```
+
+A class template starts with the keyword template followed by template parameter(s) inside <> which is followed by the class declaration.
+
+```cpp
+    template <class T>
+    class className
+    {
+        private:
+          T var;
+          ... .. ...
+        public:
+          T functionName(T arg);
+          ... .. ...
+    };
+```
+
+In the above declaration, T is the template argument which is a placeholder for the data type used, and class is a keyword.
+
+Inside the class body, a member variable var and a member function functionName() are both of type T.
+
+### Creating a Class Template Object
+
+Once we've declared and defined a class template, we can create its objects in other classes or functions (such as the main() function) with the following syntax
+
+```cpp
+className<dataType> classObject;
+```
+
+For example,
+
+```cpp
+className<int> classObject;
+className<float> classObject;
+className<string> classObject;
 ```
 
 <a id="templates_work"></a>
