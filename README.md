@@ -1,6 +1,6 @@
 # CPP_Module_07
 
-This document contains the exercises of Module 07 from C++ modules.
+This module is designed to help you understand Templates in CPP. 
 
 # Table of Content
 
